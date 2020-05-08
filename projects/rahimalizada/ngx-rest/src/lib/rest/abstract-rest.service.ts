@@ -1,6 +1,5 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { PagerRequestFilters } from '../model/pager/pager-request-filters.model';
 import { PagerResult } from '../model/pager/pager-result.model';
 
 export abstract class AbstractRestService<T> {
@@ -22,7 +21,7 @@ export abstract class AbstractRestService<T> {
     sort: string,
     sortDirection: string,
     searchTerms?: string,
-    requestFilters?: PagerRequestFilters,
+    requestFilters?: any
   ): HttpParams {
     let params = new HttpParams()
       .append('page', page.toString())
@@ -46,9 +45,16 @@ export abstract class AbstractRestService<T> {
     sort: string,
     sortDirection: string,
     searchTerms?: string,
-    requestFilters?: PagerRequestFilters,
+    requestFilters?: any
   ): Observable<PagerResult<T>> {
-    const params = this.buildParams(page, pageSize, sort, sortDirection, searchTerms, requestFilters);
+    const params = this.buildParams(
+      page,
+      pageSize,
+      sort,
+      sortDirection,
+      searchTerms,
+      requestFilters
+    );
     return this.httpClient.get<PagerResult<T>>(this.basePath, { params });
   }
 
@@ -59,10 +65,19 @@ export abstract class AbstractRestService<T> {
     sort: string,
     sortDirection: string,
     searchTerms?: string,
-    requestFilters?: PagerRequestFilters,
+    requestFilters?: any
   ): Observable<PagerResult<T>> {
-    const params = this.buildParams(page, pageSize, sort, sortDirection, searchTerms, requestFilters);
-    return this.httpClient.get<PagerResult<T>>(`${this.basePath}/${path}`, { params });
+    const params = this.buildParams(
+      page,
+      pageSize,
+      sort,
+      sortDirection,
+      searchTerms,
+      requestFilters
+    );
+    return this.httpClient.get<PagerResult<T>>(`${this.basePath}/${path}`, {
+      params,
+    });
   }
 
   getAll() {

@@ -1,7 +1,6 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable, Observer } from 'rxjs';
 import { PagerRequestFiltersType } from '../model/pager/pager-request-filters-type.enum';
-import { PagerRequestFilters } from '../model/pager/pager-request-filters.model';
 import { PagerResult } from '../model/pager/pager-result.model';
 import { AbstractRestService } from './abstract-rest.service';
 
@@ -12,7 +11,13 @@ let httpClient: jasmine.SpyObj<HttpClient>;
 
 function sharedSetup() {
   beforeEach(() => {
-    httpClient = jasmine.createSpyObj('HttpRequest', ['get', 'put', 'post', 'patch', 'delete']);
+    httpClient = jasmine.createSpyObj('HttpRequest', [
+      'get',
+      'put',
+      'post',
+      'patch',
+      'delete',
+    ]);
     service = new TestService(httpClient, basePath);
   });
 }
@@ -74,27 +79,44 @@ describe('AbstractRestService', () => {
 
   it('should submit POST request on updateByPath call', () => {
     buildResult(null);
-    service.updateByPath('id', '1').subscribe((res) => expect(res).toEqual(undefined));
+    service
+      .updateByPath('id', '1')
+      .subscribe((res) => expect(res).toEqual(undefined));
     expect(httpClient.post).toHaveBeenCalledWith(`${basePath}/id`, '1');
   });
 
   it('should submit PATCH request on patchByPath call', () => {
     buildResult(null);
-    service.patchByPath('id', '1').subscribe((res) => expect(res).toEqual(undefined));
+    service
+      .patchByPath('id', '1')
+      .subscribe((res) => expect(res).toEqual(undefined));
     expect(httpClient.patch).toHaveBeenCalledWith(`${basePath}/id`, '1');
   });
 
   it('should submit DELETE request on deleteByPath call', () => {
     buildResult(null);
-    service.deleteByPath('id').subscribe((res) => expect(res).toEqual(undefined));
+    service
+      .deleteByPath('id')
+      .subscribe((res) => expect(res).toEqual(undefined));
     expect(httpClient.delete).toHaveBeenCalledWith(`${basePath}/id`);
   });
 
   it('should submit GET request on pager call', () => {
-    const result: PagerResult<string> = { page: 1, pageSize: 10, total: 30, hasMore: true, items: ['1', '2'] };
+    const result: PagerResult<string> = {
+      page: 1,
+      pageSize: 10,
+      total: 30,
+      hasMore: true,
+      items: ['1', '2'],
+    };
     buildResult(result);
-    const requestFilters: PagerRequestFilters = { type: PagerRequestFiltersType.AND, userRatingFrom: 1 };
-    service.pager(1, 10, 'id', 'asc', 'term1 term2', requestFilters).subscribe((res) => expect(res).toBe(result));
+    const requestFilters = {
+      type: PagerRequestFiltersType.AND,
+      userRatingFrom: 1,
+    };
+    service
+      .pager(1, 10, 'id', 'asc', 'term1 term2', requestFilters)
+      .subscribe((res) => expect(res).toBe(result));
 
     const params = new HttpParams()
       .append('page', '1')
@@ -108,10 +130,21 @@ describe('AbstractRestService', () => {
   });
 
   it('should submit GET request on pager call without search terms', () => {
-    const result: PagerResult<string> = { page: 1, pageSize: 10, total: 30, hasMore: true, items: ['1', '2'] };
+    const result: PagerResult<string> = {
+      page: 1,
+      pageSize: 10,
+      total: 30,
+      hasMore: true,
+      items: ['1', '2'],
+    };
     buildResult(result);
-    const requestFilters: PagerRequestFilters = { type: PagerRequestFiltersType.AND, userRatingFrom: 1 };
-    service.pager(1, 10, 'id', 'asc', null, requestFilters).subscribe((res) => expect(res).toBe(result));
+    const requestFilters = {
+      type: PagerRequestFiltersType.AND,
+      userRatingFrom: 1,
+    };
+    service
+      .pager(1, 10, 'id', 'asc', null, requestFilters)
+      .subscribe((res) => expect(res).toBe(result));
 
     const params = new HttpParams()
       .append('page', '1')
@@ -123,12 +156,29 @@ describe('AbstractRestService', () => {
   });
 
   it('should submit GET request on pagerByPath call', () => {
-    const result: PagerResult<string> = { page: 1, pageSize: 10, total: 30, hasMore: true, items: ['1', '2'] };
+    const result: PagerResult<string> = {
+      page: 1,
+      pageSize: 10,
+      total: 30,
+      hasMore: true,
+      items: ['1', '2'],
+    };
     buildResult(result);
-    const requestFilters: PagerRequestFilters = { type: PagerRequestFiltersType.AND, userRatingFrom: 1 };
-    service.pagerByPath('subpath', 1, 10, 'id', 'asc', '', null).subscribe((res) => expect(res).toBe(result));
+    const requestFilters = {
+      type: PagerRequestFiltersType.AND,
+      userRatingFrom: 1,
+    };
+    service
+      .pagerByPath('subpath', 1, 10, 'id', 'asc', '', null)
+      .subscribe((res) => expect(res).toBe(result));
 
-    const params = new HttpParams().append('page', '1').append('pageSize', '10').append('sort', 'id').append('sortDirection', 'asc');
-    expect(httpClient.get).toHaveBeenCalledWith(`${basePath}/subpath`, { params });
+    const params = new HttpParams()
+      .append('page', '1')
+      .append('pageSize', '10')
+      .append('sort', 'id')
+      .append('sortDirection', 'asc');
+    expect(httpClient.get).toHaveBeenCalledWith(`${basePath}/subpath`, {
+      params,
+    });
   });
 });
