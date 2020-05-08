@@ -2,5 +2,46 @@
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "version": 1,
   "newProjectRoot": "projects",
-  "projects": {}
+  "projects": {
+    "@rahimalizada/ngx-rest": {
+      "projectType": "library",
+      "root": "projects/rahimalizada/ngx-rest",
+      "sourceRoot": "projects/rahimalizada/ngx-rest/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/rahimalizada/ngx-rest/tsconfig.lib.json",
+            "project": "projects/rahimalizada/ngx-rest/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/rahimalizada/ngx-rest/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/rahimalizada/ngx-rest/src/test.ts",
+            "tsConfig": "projects/rahimalizada/ngx-rest/tsconfig.spec.json",
+            "karmaConfig": "projects/rahimalizada/ngx-rest/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/rahimalizada/ngx-rest/tsconfig.lib.json",
+              "projects/rahimalizada/ngx-rest/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    }},
+  "defaultProject": "@rahimalizada/ngx-rest"
 }

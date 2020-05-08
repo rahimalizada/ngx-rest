@@ -14,7 +14,13 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "paths": {
+      "@rahimalizada/ngx-rest": [
+        "dist/rahimalizada/ngx-rest/rahimalizada-ngx-rest",
+        "dist/rahimalizada/ngx-rest"
+      ]
+    }
   },
   "angularCompilerOptions": {
     "fullTemplateTypeCheck": true,
