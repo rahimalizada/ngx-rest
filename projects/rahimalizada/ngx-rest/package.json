@@ -1,6 +1,27 @@
 {
   "name": "@rahimalizada/ngx-rest",
   "version": "0.0.1",
+  "description": "A besae abstract service for REST services and related angular resolvers/interceptors",
+  "keywords": [
+    "angular",
+    "rest",
+    "http",
+    "service",
+    "resolver",
+    "interceptor"
+  ],
+  "author": {
+    "name": "Rahim Alizada"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/rahimalizada/ngx-rest",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rahimalizada/ngx-rest.git"
+  },
+  "bugs": {
+    "url": "https://github.com/rahimalizada/ngx-rest/issues"
+  },
   "peerDependencies": {
     "@angular/common": "^9.1.4",
     "@angular/core": "^9.1.4",
