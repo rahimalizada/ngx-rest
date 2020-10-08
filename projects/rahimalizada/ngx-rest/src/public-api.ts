@@ -2,6 +2,7 @@
  * Public API Surface of ngx-rest
  */
 
+export * from './lib/model/batch-update-request.model';
 export * from './lib/model/pager/pager-request-filters-type.enum';
 export * from './lib/model/pager/pager-request.model';
 export * from './lib/model/pager/pager-result.model';
