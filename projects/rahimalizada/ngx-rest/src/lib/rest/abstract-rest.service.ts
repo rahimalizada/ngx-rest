@@ -61,24 +61,24 @@ export abstract class AbstractRestService<T> {
     return this.httpClient.get<T>(`${this.basePath}/${path}`);
   }
 
-  create(data: T) {
-    return this.httpClient.put<void>(this.basePath, data);
+  create(putData: T) {
+    return this.httpClient.put<void>(this.basePath, putData);
   }
 
-  update(data: T) {
-    return this.httpClient.post<void>(this.basePath, data);
+  update(postData: T) {
+    return this.httpClient.post<void>(this.basePath, postData);
   }
 
-  updateByPath(path: string, data: T) {
-    return this.httpClient.post<void>(`${this.basePath}/${path}`, data);
+  updateByPath(path: string, postData: T) {
+    return this.httpClient.post<void>(`${this.basePath}/${path}`, postData);
   }
 
-  patch(data: T) {
-    return this.httpClient.patch<void>(`${this.basePath}`, data);
+  patch(patchData: T) {
+    return this.httpClient.patch<void>(`${this.basePath}`, patchData);
   }
 
-  patchByPath(path: string, data: T) {
-    return this.httpClient.patch<void>(`${this.basePath}/${path}`, data);
+  patchByPath(path: string, patchData: T) {
+    return this.httpClient.patch<void>(`${this.basePath}/${path}`, patchData);
   }
 
   deleteByPath(path: string) {
