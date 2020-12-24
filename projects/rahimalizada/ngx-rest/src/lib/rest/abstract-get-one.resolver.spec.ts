@@ -17,7 +17,7 @@ let restService: jasmine.SpyObj<AbstractRestService<any>>;
 let resolver: TestResolver<any>;
 let result: Observable<string>;
 
-function sharedSetup() {
+const sharedSetup = () => {
   beforeEach(() => {
     restService = jasmine.createSpyObj('AbstractRestService', ['getOne']);
     resolver = new TestResolver(restService);
@@ -28,7 +28,7 @@ function sharedSetup() {
 
     restService.getOne.and.returnValue(result);
   });
-}
+};
 
 describe('AbstractGetOneResolver', () => {
   sharedSetup();

@@ -18,7 +18,7 @@ let restService: jasmine.SpyObj<AbstractRestService<any>>;
 let resolver: TestResolver<any>;
 let result: Observable<string[]>;
 
-function sharedSetup() {
+const sharedSetup = () => {
   beforeEach(() => {
     restService = jasmine.createSpyObj('AbstractRestService', ['getManyByPath']);
     resolver = new TestResolver(restService);
@@ -29,7 +29,7 @@ function sharedSetup() {
 
     restService.getManyByPath.and.returnValue(result);
   });
-}
+};
 
 describe('AbstractGetManyByPathResolver', () => {
   sharedSetup();

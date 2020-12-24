@@ -21,7 +21,7 @@ const result = {
   user: { name: 'Name', created: new Date(1577840461010), logins: [new Date(1577840461100), 'Not a date'] },
 };
 
-function sharedSetup() {
+const sharedSetup = () => {
   beforeEach(() => {
     httpRequest = jasmine.createSpyObj('HttpRequest', ['']);
     httpHandler = jasmine.createSpyObj('HttpHandler', ['handle']);
@@ -37,7 +37,7 @@ function sharedSetup() {
 
     httpHandler.handle.and.returnValue(httpResponseResult);
   });
-}
+};
 
 describe('DateParserInterceptor', () => {
   sharedSetup();

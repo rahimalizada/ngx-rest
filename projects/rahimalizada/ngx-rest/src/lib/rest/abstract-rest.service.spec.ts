@@ -9,14 +9,14 @@ const basePath = 'path';
 let service: TestService<any>;
 let httpClient: jasmine.SpyObj<HttpClient>;
 
-function sharedSetup() {
+const sharedSetup = () => {
   beforeEach(() => {
     httpClient = jasmine.createSpyObj('HttpRequest', ['get', 'put', 'post', 'patch', 'delete']);
     service = new TestService(httpClient, basePath);
   });
-}
+};
 
-function buildResult(data: any) {
+const buildResult = (data: any) => {
   const result =
     data == null
       ? new Observable((observer: Observer<void>) => {
@@ -32,7 +32,7 @@ function buildResult(data: any) {
   httpClient.post.and.returnValue(result);
   httpClient.patch.and.returnValue(result);
   httpClient.delete.and.returnValue(result);
-}
+};
 
 describe('AbstractRestService', () => {
   sharedSetup();
