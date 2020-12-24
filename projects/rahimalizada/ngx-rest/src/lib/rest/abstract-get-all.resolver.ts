@@ -6,6 +6,6 @@ export abstract class AbstractGetAllResolver<T> implements Resolve<T[]> {
   constructor(private service: AbstractRestService<T>) {}
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): T[] | Observable<T[]> | Promise<T[]> {
-    return this.service.getAll();
+    return this.service.getMany();
   }
 }

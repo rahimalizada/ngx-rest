@@ -6,6 +6,6 @@ export abstract class AbstractGetByPathResolver<T> implements Resolve<T> {
   constructor(private service: AbstractRestService<T>) {}
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): T | Observable<T> | Promise<T> {
-    return this.service.getByPath(route.params.id);
+    return this.service.getOneByPath(route.params.id);
   }
 }

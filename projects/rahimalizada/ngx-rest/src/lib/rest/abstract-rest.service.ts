@@ -49,16 +49,20 @@ export abstract class AbstractRestService<T> {
     });
   }
 
-  getAll() {
-    return this.httpClient.get<T[]>(this.basePath);
-  }
-
-  get() {
+  getOne() {
     return this.httpClient.get<T>(this.basePath);
   }
 
-  getByPath(path: string) {
+  getMany() {
+    return this.httpClient.get<T[]>(this.basePath);
+  }
+
+  getOneByPath(path: string) {
     return this.httpClient.get<T>(`${this.basePath}/${path}`);
+  }
+
+  getManyByPath(path: string) {
+    return this.httpClient.get<T[]>(`${this.basePath}/${path}`);
   }
 
   create(putData: T) {

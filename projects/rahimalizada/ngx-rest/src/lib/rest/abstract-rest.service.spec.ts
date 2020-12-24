@@ -11,13 +11,7 @@ let httpClient: jasmine.SpyObj<HttpClient>;
 
 function sharedSetup() {
   beforeEach(() => {
-    httpClient = jasmine.createSpyObj('HttpRequest', [
-      'get',
-      'put',
-      'post',
-      'patch',
-      'delete',
-    ]);
+    httpClient = jasmine.createSpyObj('HttpRequest', ['get', 'put', 'post', 'patch', 'delete']);
     service = new TestService(httpClient, basePath);
   });
 }
@@ -47,21 +41,21 @@ describe('AbstractRestService', () => {
     expect(service).toBeTruthy();
   });
 
-  it('should submit GET request on getAll call', () => {
+  it('should submit GET request on getMany call', () => {
     buildResult(['1', '2']);
-    service.getAll().subscribe((res) => expect(res).toEqual(['1', '2']));
+    service.getMany().subscribe((res) => expect(res).toEqual(['1', '2']));
     expect(httpClient.get).toHaveBeenCalledWith(basePath);
   });
 
-  it('should submit GET request on get call', () => {
+  it('should submit GET request on getOne call', () => {
     buildResult('1');
-    service.get().subscribe((res) => expect(res).toEqual('1'));
+    service.getOne().subscribe((res) => expect(res).toEqual('1'));
     expect(httpClient.get).toHaveBeenCalledWith(basePath);
   });
 
-  it('should submit GET request on getByPath call', () => {
+  it('should submit GET request on getOneByPath call', () => {
     buildResult('1');
-    service.getByPath('id').subscribe((res) => expect(res).toEqual('1'));
+    service.getOneByPath('id').subscribe((res) => expect(res).toEqual('1'));
     expect(httpClient.get).toHaveBeenCalledWith(`${basePath}/id`);
   });
 
@@ -79,25 +73,19 @@ describe('AbstractRestService', () => {
 
   it('should submit POST request on updateByPath call', () => {
     buildResult(null);
-    service
-      .updateByPath('id', '1')
-      .subscribe((res) => expect(res).toEqual(undefined));
+    service.updateByPath('id', '1').subscribe((res) => expect(res).toEqual(undefined));
     expect(httpClient.post).toHaveBeenCalledWith(`${basePath}/id`, '1');
   });
 
   it('should submit PATCH request on patchByPath call', () => {
     buildResult(null);
-    service
-      .patchByPath('id', '1')
-      .subscribe((res) => expect(res).toEqual(undefined));
+    service.patchByPath('id', '1').subscribe((res) => expect(res).toEqual(undefined));
     expect(httpClient.patch).toHaveBeenCalledWith(`${basePath}/id`, '1');
   });
 
   it('should submit DELETE request on deleteByPath call', () => {
     buildResult(null);
-    service
-      .deleteByPath('id')
-      .subscribe((res) => expect(res).toEqual(undefined));
+    service.deleteByPath('id').subscribe((res) => expect(res).toEqual(undefined));
     expect(httpClient.delete).toHaveBeenCalledWith(`${basePath}/id`);
   });
 
@@ -114,9 +102,7 @@ describe('AbstractRestService', () => {
       type: PagerRequestFiltersType.AND,
       userRatingFrom: 1,
     };
-    service
-      .pager(1, 10, 'id', 'asc', 'term1 term2', requestFilters)
-      .subscribe((res) => expect(res).toBe(result));
+    service.pager(1, 10, 'id', 'asc', 'term1 term2', requestFilters).subscribe((res) => expect(res).toBe(result));
 
     const params = new HttpParams()
       .append('page', '1')
@@ -142,9 +128,7 @@ describe('AbstractRestService', () => {
       type: PagerRequestFiltersType.AND,
       userRatingFrom: 1,
     };
-    service
-      .pager(1, 10, 'id', 'asc', null, requestFilters)
-      .subscribe((res) => expect(res).toBe(result));
+    service.pager(1, 10, 'id', 'asc', null, requestFilters).subscribe((res) => expect(res).toBe(result));
 
     const params = new HttpParams()
       .append('page', '1')
@@ -168,15 +152,9 @@ describe('AbstractRestService', () => {
       type: PagerRequestFiltersType.AND,
       userRatingFrom: 1,
     };
-    service
-      .pagerByPath('subpath', 1, 10, 'id', 'asc', '', null)
-      .subscribe((res) => expect(res).toBe(result));
+    service.pagerByPath('subpath', 1, 10, 'id', 'asc', '', null).subscribe((res) => expect(res).toBe(result));
 
-    const params = new HttpParams()
-      .append('page', '1')
-      .append('pageSize', '10')
-      .append('sort', 'id')
-      .append('sortDirection', 'asc');
+    const params = new HttpParams().append('page', '1').append('pageSize', '10').append('sort', 'id').append('sortDirection', 'asc');
     expect(httpClient.get).toHaveBeenCalledWith(`${basePath}/subpath`, {
       params,
     });
