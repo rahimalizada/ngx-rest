@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { Observable, Observer } from 'rxjs';
-import { AbstractGetAllResolver } from './abstract-get-all.resolver';
+import { AbstractGetManyResolver } from './abstract-get-many.resolver';
 import { AbstractRestService } from './abstract-rest.service';
 
 @Injectable({ providedIn: 'root' })
-class TestResolver<T> extends AbstractGetAllResolver<T> {
+class TestResolver<T> extends AbstractGetManyResolver<T> {
   constructor(r: AbstractRestService<T>) {
     super(r);
   }
@@ -30,7 +30,7 @@ function sharedSetup() {
   });
 }
 
-describe('AbstractGetAllResolver', () => {
+describe('AbstractGetManyResolver', () => {
   sharedSetup();
 
   it('should be created', () => {

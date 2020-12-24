@@ -2,10 +2,10 @@ import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/r
 import { Observable } from 'rxjs';
 import { AbstractRestService } from './abstract-rest.service';
 
-export abstract class AbstractGetAllResolver<T> implements Resolve<T[]> {
+export abstract class AbstractGetOneByPathResolver<T> implements Resolve<T> {
   constructor(private service: AbstractRestService<T>) {}
 
-  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): T[] | Observable<T[]> | Promise<T[]> {
-    return this.service.getMany();
+  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): T | Observable<T> | Promise<T> {
+    return this.service.getOneByPath(route.params.id);
   }
 }

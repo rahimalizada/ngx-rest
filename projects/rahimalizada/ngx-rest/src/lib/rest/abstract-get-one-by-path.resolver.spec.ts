@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { Observable, Observer } from 'rxjs';
-import { AbstractGetByPathResolver } from './abstract-get-by-path.resolver';
+import { AbstractGetOneByPathResolver } from './abstract-get-one-by-path.resolver';
 import { AbstractRestService } from './abstract-rest.service';
 
 @Injectable({ providedIn: 'root' })
-class TestResolver<T> extends AbstractGetByPathResolver<T> {
+class TestResolver<T> extends AbstractGetOneByPathResolver<T> {
   constructor(r: AbstractRestService<T>) {
     super(r);
   }
@@ -31,7 +31,7 @@ function sharedSetup() {
   });
 }
 
-describe('AbstractGetByPathResolver', () => {
+describe('AbstractGetOneByPathResolver', () => {
   sharedSetup();
 
   it('should be created', () => {
