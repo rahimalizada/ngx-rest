@@ -65,23 +65,51 @@ export abstract class AbstractRestService<T> {
     return this.httpClient.get<T[]>(`${this.basePath}/${path}`);
   }
 
-  create(putData: T) {
+  createOne(putData: T) {
     return this.httpClient.put<void>(this.basePath, putData);
   }
 
-  update(postData: T) {
+  createMany(putData: T[]) {
+    return this.httpClient.put<void>(this.basePath, putData);
+  }
+
+  createOneByPath(path: string, putData: T) {
+    return this.httpClient.put<void>(`${this.basePath}/${path}`, putData);
+  }
+
+  createManyByPath(path: string, putData: T[]) {
+    return this.httpClient.put<void>(`${this.basePath}/${path}`, putData);
+  }
+
+  updateOne(postData: T) {
     return this.httpClient.post<void>(this.basePath, postData);
   }
 
-  updateByPath(path: string, postData: T) {
+  updateMany(postData: T[]) {
+    return this.httpClient.post<void>(this.basePath, postData);
+  }
+
+  updateOneByPath(path: string, postData: T) {
     return this.httpClient.post<void>(`${this.basePath}/${path}`, postData);
   }
 
-  patch(patchData: T) {
+  updateManyByPath(path: string, postData: T[]) {
+    return this.httpClient.post<void>(`${this.basePath}/${path}`, postData);
+  }
+
+  patchOne(patchData: T) {
     return this.httpClient.patch<void>(`${this.basePath}`, patchData);
   }
 
-  patchByPath(path: string, patchData: T) {
+  patchMany(patchData: T[]) {
+    return this.httpClient.patch<void>(`${this.basePath}`, patchData);
+  }
+
+  patchOneByPath(path: string, patchData: T) {
+    return this.httpClient.patch<void>(`${this.basePath}/${path}`, patchData);
+  }
+
+  patchManyByPath(path: string, patchData: T[]) {
     return this.httpClient.patch<void>(`${this.basePath}/${path}`, patchData);
   }
 
