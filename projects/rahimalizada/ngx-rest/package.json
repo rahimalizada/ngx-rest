@@ -1,6 +1,6 @@
 {
   "name": "@rahimalizada/ngx-rest",
-  "version": "0.0.14",
+  "version": "0.0.15",
   "description": "A besae abstract service for REST services and related angular resolvers/interceptors",
   "keywords": [
     "angular",
