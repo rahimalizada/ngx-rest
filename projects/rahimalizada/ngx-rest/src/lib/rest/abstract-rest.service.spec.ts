@@ -61,25 +61,25 @@ describe('AbstractRestService', () => {
 
   it('should submit PUT request on create call', () => {
     buildResult(null);
-    service.create('1').subscribe((res) => expect(res).toEqual(undefined));
+    service.createOne('1').subscribe((res) => expect(res).toEqual(undefined));
     expect(httpClient.put).toHaveBeenCalledWith(`${basePath}`, '1');
   });
 
   it('should submit POST request on update call', () => {
     buildResult(null);
-    service.update('1').subscribe((res) => expect(res).toEqual(undefined));
+    service.updateOne('1').subscribe((res) => expect(res).toEqual(undefined));
     expect(httpClient.post).toHaveBeenCalledWith(`${basePath}`, '1');
   });
 
   it('should submit POST request on updateByPath call', () => {
     buildResult(null);
-    service.updateByPath('id', '1').subscribe((res) => expect(res).toEqual(undefined));
+    service.updateOneByPath('id', '1').subscribe((res) => expect(res).toEqual(undefined));
     expect(httpClient.post).toHaveBeenCalledWith(`${basePath}/id`, '1');
   });
 
   it('should submit PATCH request on patchByPath call', () => {
     buildResult(null);
-    service.patchByPath('id', '1').subscribe((res) => expect(res).toEqual(undefined));
+    service.patchOneByPath('id', '1').subscribe((res) => expect(res).toEqual(undefined));
     expect(httpClient.patch).toHaveBeenCalledWith(`${basePath}/id`, '1');
   });
 

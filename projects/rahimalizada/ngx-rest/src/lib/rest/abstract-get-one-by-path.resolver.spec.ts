@@ -20,14 +20,14 @@ let result: Observable<string>;
 
 function sharedSetup() {
   beforeEach(() => {
-    restService = jasmine.createSpyObj('AbstractRestService', ['getByPath']);
+    restService = jasmine.createSpyObj('AbstractRestService', ['getOneByPath']);
     resolver = new TestResolver(restService);
     result = new Observable((observer: Observer<string>) => {
       observer.next('a');
       observer.complete();
     });
 
-    restService.getByPath.and.returnValue(result);
+    restService.getOneByPath.and.returnValue(result);
   });
 }
 

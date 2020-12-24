@@ -19,14 +19,14 @@ let result: Observable<string[]>;
 
 function sharedSetup() {
   beforeEach(() => {
-    restService = jasmine.createSpyObj('AbstractRestService', ['getAll']);
+    restService = jasmine.createSpyObj('AbstractRestService', ['getMany']);
     resolver = new TestResolver(restService);
     result = new Observable((observer: Observer<string[]>) => {
       observer.next(['a']);
       observer.complete();
     });
 
-    restService.getAll.and.returnValue(result);
+    restService.getMany.and.returnValue(result);
   });
 }
 
