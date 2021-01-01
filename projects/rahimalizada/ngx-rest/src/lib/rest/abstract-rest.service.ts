@@ -65,35 +65,35 @@ export abstract class AbstractRestService<T> {
     return this.httpClient.get<T[]>(`${this.basePath}/${path}`);
   }
 
-  createOne(putData: T) {
+  putOne(putData: T) {
     return this.httpClient.put<void>(this.basePath, putData);
   }
 
-  createMany(putData: T[]) {
+  putMany(putData: T[]) {
     return this.httpClient.put<void>(this.basePath, putData);
   }
 
-  createOneByPath(path: string, putData: T) {
+  putOneByPath(path: string, putData: T) {
     return this.httpClient.put<void>(`${this.basePath}/${path}`, putData);
   }
 
-  createManyByPath(path: string, putData: T[]) {
+  putManyByPath(path: string, putData: T[]) {
     return this.httpClient.put<void>(`${this.basePath}/${path}`, putData);
   }
 
-  updateOne(postData: T) {
+  postOne(postData: T) {
     return this.httpClient.post<void>(this.basePath, postData);
   }
 
-  updateMany(postData: T[]) {
+  postMany(postData: T[]) {
     return this.httpClient.post<void>(this.basePath, postData);
   }
 
-  updateOneByPath(path: string, postData: T) {
+  postOneByPath(path: string, postData: T) {
     return this.httpClient.post<void>(`${this.basePath}/${path}`, postData);
   }
 
-  updateManyByPath(path: string, postData: T[]) {
+  postManyByPath(path: string, postData: T[]) {
     return this.httpClient.post<void>(`${this.basePath}/${path}`, postData);
   }
 

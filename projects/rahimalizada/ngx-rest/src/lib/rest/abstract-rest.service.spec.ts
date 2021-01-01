@@ -61,19 +61,19 @@ describe('AbstractRestService', () => {
 
   it('should submit PUT request on create call', () => {
     buildResult(null);
-    service.createOne('1').subscribe((res) => expect(res).toEqual(undefined));
+    service.putOne('1').subscribe((res) => expect(res).toEqual(undefined));
     expect(httpClient.put).toHaveBeenCalledWith(`${basePath}`, '1');
   });
 
   it('should submit POST request on update call', () => {
     buildResult(null);
-    service.updateOne('1').subscribe((res) => expect(res).toEqual(undefined));
+    service.postOne('1').subscribe((res) => expect(res).toEqual(undefined));
     expect(httpClient.post).toHaveBeenCalledWith(`${basePath}`, '1');
   });
 
   it('should submit POST request on updateByPath call', () => {
     buildResult(null);
-    service.updateOneByPath('id', '1').subscribe((res) => expect(res).toEqual(undefined));
+    service.postOneByPath('id', '1').subscribe((res) => expect(res).toEqual(undefined));
     expect(httpClient.post).toHaveBeenCalledWith(`${basePath}/id`, '1');
   });
 
