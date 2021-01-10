@@ -34,7 +34,34 @@ export abstract class AbstractRestService<T> {
     return this.httpClient.get<PagerResult<T>>(this.basePath, { params });
   }
 
+  tempPager(
+    page: number,
+    pageSize: number,
+    sort: string,
+    sortDirection: string,
+    searchTerms?: string,
+    requestFilters?: any,
+  ): Observable<PagerResult<T>> {
+    const params = this.buildParams(page, pageSize, sort, sortDirection, searchTerms, requestFilters);
+    return this.httpClient.get<PagerResult<T>>(this.basePath, { params });
+  }
+
   pagerByPath(
+    path: string,
+    page: number,
+    pageSize: number,
+    sort: string,
+    sortDirection: string,
+    searchTerms?: string,
+    requestFilters?: any,
+  ): Observable<PagerResult<T>> {
+    const params = this.buildParams(page, pageSize, sort, sortDirection, searchTerms, requestFilters);
+    return this.httpClient.get<PagerResult<T>>(`${this.basePath}/${path}`, {
+      params,
+    });
+  }
+
+  tempPagerByPath(
     path: string,
     page: number,
     pageSize: number,
