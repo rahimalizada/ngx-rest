@@ -112,7 +112,7 @@ describe('AbstractRestService', () => {
       .append('searchTerms', 'term1')
       .append('searchTerms', 'term2')
       .append('requestFilters', JSON.stringify(requestFilters));
-    expect(httpClient.get).toHaveBeenCalledWith(`${basePath}`, { params });
+    expect(httpClient.get).toHaveBeenCalledWith(`${basePath}/pager`, { params });
   });
 
   it('should submit GET request on pager call without search terms', () => {
@@ -136,7 +136,7 @@ describe('AbstractRestService', () => {
       .append('sort', 'id')
       .append('sortDirection', 'asc')
       .append('requestFilters', JSON.stringify(requestFilters));
-    expect(httpClient.get).toHaveBeenCalledWith(`${basePath}`, { params });
+    expect(httpClient.get).toHaveBeenCalledWith(`${basePath}/pager`, { params });
   });
 
   it('should submit GET request on pagerByPath call', () => {
@@ -155,7 +155,7 @@ describe('AbstractRestService', () => {
     service.pagerByPath('subpath', 1, 10, 'id', 'asc', '', null).subscribe((res) => expect(res).toBe(result));
 
     const params = new HttpParams().append('page', '1').append('pageSize', '10').append('sort', 'id').append('sortDirection', 'asc');
-    expect(httpClient.get).toHaveBeenCalledWith(`${basePath}/subpath`, {
+    expect(httpClient.get).toHaveBeenCalledWith(`${basePath}/pager/subpath`, {
       params,
     });
   });

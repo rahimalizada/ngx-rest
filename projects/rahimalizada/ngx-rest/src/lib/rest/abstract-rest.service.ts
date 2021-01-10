@@ -31,7 +31,7 @@ export abstract class AbstractRestService<T> {
     requestFilters?: any,
   ): Observable<PagerResult<T>> {
     const params = this.buildParams(page, pageSize, sort, sortDirection, searchTerms, requestFilters);
-    return this.httpClient.get<PagerResult<T>>(this.basePath, { params });
+    return this.httpClient.get<PagerResult<T>>(`${this.basePath}/pager`, { params });
   }
 
   pagerByPath(
@@ -44,7 +44,7 @@ export abstract class AbstractRestService<T> {
     requestFilters?: any,
   ): Observable<PagerResult<T>> {
     const params = this.buildParams(page, pageSize, sort, sortDirection, searchTerms, requestFilters);
-    return this.httpClient.get<PagerResult<T>>(`${this.basePath}/${path}`, {
+    return this.httpClient.get<PagerResult<T>>(`${this.basePath}/pager/${path}`, {
       params,
     });
   }
