@@ -25,7 +25,8 @@
   "peerDependencies": {
     "@angular/common": "^11.1.0",
     "@angular/core": "^11.1.0",
-    "@angular/router": "^11.1.0"
+    "@angular/router": "^11.1.0",
+    "@rahimalizada/ngx-common": "^0.0.3"
   },
   "dependencies": {
     "tslib": "^2.0.0"
