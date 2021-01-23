@@ -1,6 +1,6 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
+import { PagerResult } from '@rahimalizada/ngx-common';
 import { Observable } from 'rxjs';
-import { PagerResult } from '../model/pager/pager-result.model';
 
 export abstract class AbstractRestService<T> {
   constructor(protected httpClient: HttpClient, protected basePath: string) {}

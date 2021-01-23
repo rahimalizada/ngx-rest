@@ -1,7 +1,6 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
+import { PagerRequestFiltersType, PagerResult } from '@rahimalizada/ngx-common';
 import { Observable, Observer } from 'rxjs';
-import { PagerRequestFiltersType } from '../model/pager/pager-request-filters-type.enum';
-import { PagerResult } from '../model/pager/pager-result.model';
 import { AbstractRestService } from './abstract-rest.service';
 
 class TestService<T> extends AbstractRestService<T> {}
